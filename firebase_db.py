@@ -17,9 +17,9 @@ class FirebaseDB:
         })
 
     # create/update
-    def update(self, key, value):
+    def update(self, data: dict):
         ref = db.reference()
-        ref.update({key:value})
+        ref.update(data)
 
     # get
     def get(self, v=None):

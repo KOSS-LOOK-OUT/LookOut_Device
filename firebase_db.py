@@ -8,11 +8,12 @@ from dotenv import load_dotenv
 
 class FirebaseDB:
     def __init__(self):
+        """Authentication"""
         load_dotenv(verbose=True)
         DATABASE_URL = os.getenv('DATABASE_URL')
         cred = credentials.Certificate('certification.json')
         firebase_admin.initialize_app(cred,{
-            'databaseURL' : 'https://lookout-c073f-default-rtdb.firebaseio.com/'
+            'databaseURL' : DATABASE_URL
         })
 
     # create/update
@@ -27,6 +28,11 @@ class FirebaseDB:
         return ref.get()
 
 
-f = FirebaseDB()
-f.update('ㅇㅇ', 'ㄴㄴㄴ')
-print(f.get('테스트'))
+def main():
+    f = FirebaseDB()
+    f.update('hello', 'world')
+    print(f.get())
+
+
+if __name__ == "__main__":
+    main()

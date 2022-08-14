@@ -1,5 +1,6 @@
 from __future__ import division
 import dotenv
+
 dotenv.load_dotenv()
 
 
@@ -40,6 +41,13 @@ import time
 from google.cloud import speech
 import pyaudio
 from six.moves import queue
+
+from firebase_db import FirebaseDB
+from datetime import datetime
+
+# Device setting parameters
+DEVICE_ID = 1
+DEVICE_STATUS = True
 
 # Audio recording parameters
 STREAMING_LIMIT = 240000  # 4 minutes
@@ -223,6 +231,19 @@ def listen_print_loop(responses, stream):
             sys.stdout.write(GREEN)
             sys.stdout.write("\033[K")
             sys.stdout.write(str(corrected_time) + ": " + transcript + "\n")
+
+
+            fb = FirebaseDB()
+            nowdate = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            fb.update({
+                "device_"+str(DEVICE_ID):{
+                "device_status":DEVICE_STATUS,
+                "content":{
+                "message":transcript,
+                "datetime":nowdate
+            }}})
+            DEVICE_ID += 1  # for test
+
 
             stream.is_final_end_time = stream.result_end_time
             stream.last_transcript_was_final = True

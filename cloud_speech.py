@@ -48,6 +48,7 @@ from datetime import datetime
 # Device setting parameters
 DEVICE_ID = 1
 DEVICE_STATUS = True
+KEY_WORDS = ["불이야", "조심해", "살려줘"]
 
 # Audio recording parameters
 STREAMING_LIMIT = 240000  # 4 minutes
@@ -191,6 +192,9 @@ def listen_print_loop(responses, stream):
     final one, print a newline to preserve the finalized transcription.
     """
 
+    global DEVICE_ID
+    fb = FirebaseDB()
+
     for response in responses:
 
         if get_current_time() - stream.start_time > STREAMING_LIMIT:
@@ -206,6 +210,19 @@ def listen_print_loop(responses, stream):
             continue
 
         transcript = result.alternatives[0].transcript
+
+        for keyword in KEY_WORDS:
+            if transcript.split()[-1] in keyword:
+
+                nowdate = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                fb.update({
+                    "device_"+str(DEVICE_ID):{
+                    "device_status":DEVICE_STATUS,
+                    "content":{
+                    "message":keyword,
+                    "datetime":nowdate
+                }}})
+                DEVICE_ID += 1  # for test
 
         result_seconds = 0
         result_micros = 0
@@ -231,18 +248,6 @@ def listen_print_loop(responses, stream):
             sys.stdout.write(GREEN)
             sys.stdout.write("\033[K")
             sys.stdout.write(str(corrected_time) + ": " + transcript + "\n")
-
-
-            fb = FirebaseDB()
-            nowdate = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            fb.update({
-                "device_"+str(DEVICE_ID):{
-                "device_status":DEVICE_STATUS,
-                "content":{
-                "message":transcript,
-                "datetime":nowdate
-            }}})
-            DEVICE_ID += 1  # for test
 
 
             stream.is_final_end_time = stream.result_end_time

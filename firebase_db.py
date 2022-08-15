@@ -27,6 +27,14 @@ class FirebaseDB:
         else: ref = db.reference()
         return ref.get()
 
+    def listener(self, event):
+        print(event.event_type)
+        print(event.path)
+        print(event.data)
+
+    def listen_data(self, device_id):
+        db.reference('device_'+str(device_id)+'/').listen(self.listener)
+
 
 def main():
     f = FirebaseDB()

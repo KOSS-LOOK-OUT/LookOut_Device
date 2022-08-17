@@ -222,7 +222,7 @@ def listen_print_loop(responses, stream):
                     "message":keyword,
                     "datetime":nowdate
                 }}})
-                DEVICE_ID += 1  # for test
+                # DEVICE_ID += 1  # for test
 
         result_seconds = 0
         result_micros = 0

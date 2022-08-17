@@ -37,8 +37,7 @@ def yield_dummy():
 
 if __name__ == "__main__":
     fb = FirebaseDB()
-    fb.listen_data(1)
-    # for data in yield_dummy():
-    #     fb.update(data)
-    #     sleep(5)
+    listener = fb.listen_data(1)
+    # listener.close()
+
     

@@ -33,12 +33,12 @@ class FirebaseDB:
         print(event.data)
 
     def listen_data(self, device_id):
-        db.reference('device_'+str(device_id)+'/').listen(self.listener)
+        return db.reference('device_'+str(device_id)+'/').listen(self.listener)
 
 
 def main():
     f = FirebaseDB()
-    f.update('hello', 'world')
+    f.update({'hello':'world'})
     print(f.get())
 
 

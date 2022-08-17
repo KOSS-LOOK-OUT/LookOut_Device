@@ -7,7 +7,7 @@ from firebase_db import FirebaseDB
 from datetime import datetime
 from time import sleep
 
-DEVICE_ID = 2  # Write your device id
+DEVICE_ID = 1  # Write your device id
 DEVICE_STATUS = True  # Device power True: ON 
 
 def yield_dummy():
@@ -37,7 +37,14 @@ def yield_dummy():
 
 if __name__ == "__main__":
     fb = FirebaseDB()
-    listener = fb.listen_data(1)
+    listener = fb.listen_data(DEVICE_ID)  # listener, 파이어베이스에 데이터가 갱신될때마다 수신함
+
+    # 무한으로 더미 데이터 생성
+    while True:
+        for data in yield_dummy():
+            fb.update(data)
+            sleep(2)
+
     # listener.close()
 
     

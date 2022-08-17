@@ -48,7 +48,7 @@ from datetime import datetime
 # Device setting parameters
 DEVICE_ID = 1
 DEVICE_STATUS = True
-KEY_WORDS = ["불이야", "조심해", "살려줘"]
+# KEY_WORDS = ["불이야", "조심해", "살려줘"]
 
 # Audio recording parameters
 STREAMING_LIMIT = 240000  # 4 minutes
@@ -211,18 +211,27 @@ def listen_print_loop(responses, stream):
 
         transcript = result.alternatives[0].transcript
 
-        for keyword in KEY_WORDS:
-            if transcript.split()[-1] in keyword:
+        # for keyword in KEY_WORDS:
+        #     if transcript.split()[-1] in keyword:
 
-                nowdate = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                fb.update({
-                    "device_"+str(DEVICE_ID):{
-                    "device_status":DEVICE_STATUS,
-                    "content":{
-                    "message":keyword,
-                    "datetime":nowdate
-                }}})
-                # DEVICE_ID += 1  # for test
+        #         nowdate = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        #         fb.update({
+        #             "device_"+str(DEVICE_ID):{
+        #             "device_status":DEVICE_STATUS,
+        #             "content":{
+        #             "message":keyword,
+        #             "datetime":nowdate
+        #         }}})
+
+        nowdate = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        fb.update({
+            "device_"+str(DEVICE_ID):{
+            "device_status":DEVICE_STATUS,
+            "content":{
+            "message":transcript.split()[-1],
+            "datetime":nowdate
+        }}})
+
 
         result_seconds = 0
         result_micros = 0

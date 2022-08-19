@@ -22,14 +22,14 @@ def yield_dummy():
             "device_"+str(DEVICE_ID):{
             "device_status":DEVICE_STATUS,
             "content":{
-            "message":"위험해",
+            "message":"조심해",
             "datetime":datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         }}},
         {
             "device_"+str(DEVICE_ID):{
             "device_status":DEVICE_STATUS,
             "content":{
-            "message":"도와주세요",
+            "message":"도둑이야",
             "datetime":datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         }}},
     ]
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     while True:
         for data in yield_dummy():
             fb.update(data)
-            sleep(2)
+            sleep(10)
 
     # listener.close()
 

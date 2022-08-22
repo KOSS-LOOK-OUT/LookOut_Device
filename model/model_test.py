@@ -16,7 +16,8 @@ interpreter = tf.lite.Interpreter(model_path="conv.tflite")
 interpreter.allocate_tensors()
 
 # 인식하고자 하는 웨이브파일을 읽어온다.
-samplerate, data = wavfile.read("C:\\Users\\eunji\\Downloads\\55.wav")
+# !ffmpeg -i data/buliya/test.wav -ar 16000 test.wav
+samplerate, data = wavfile.read("data/test.wav")
 
 # 첫 번쨰 input을 입력한다. 그래프를 분석하면 (16000, 1)shape의 [0,1)의 np.float32임을 확인할 수 있다. 그것에 맞춰서 데이터를 수정하자
 input_data = np.array(data[:16000]/32767.0, dtype=np.float32).reshape((16000, 1))

@@ -11,9 +11,12 @@ class FirebaseDB:
         """Authentication"""
         load_dotenv(verbose=True)
         DATABASE_URL = os.getenv('DATABASE_URL')
-        cred = credentials.Certificate('certification.json')
-        firebase_admin.initialize_app(cred,{
-            'databaseURL' : DATABASE_URL
+        #cred = credentials.Certificate('certification.json')
+        cred = credentials.Certificate(
+            'test.json')
+        firebase_admin.initialize_app(cred, {
+            # 'databaseURL' : DATABASE_URL
+            'databaseURL': 'https://test-51406-default-rtdb.firebaseio.com/'
         })
 
     # create/update
@@ -23,9 +26,15 @@ class FirebaseDB:
 
     # get
     def get(self, v=None):
-        if v: ref = db.reference(v)
-        else: ref = db.reference()
+        if v:
+            ref = db.reference(v)
+        else:
+            ref = db.reference()
         return ref.get()
+
+    def delete(self, v):
+        ref = db.reference(v)
+        ref.delete()
 
     def listener(self, event):
         print(event.event_type)
@@ -38,8 +47,10 @@ class FirebaseDB:
 
 def main():
     f = FirebaseDB()
-    f.update({'hello':'world'})
-    print(f.get())
+    # f.delete('726034')
+
+    # f.update({'hello': 'world'})
+    # print(f.get())
 
 
 if __name__ == "__main__":

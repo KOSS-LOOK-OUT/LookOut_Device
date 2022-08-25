@@ -3,7 +3,7 @@ from scipy.io import wavfile
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
-interpreter = tf.lite.Interpreter(model_path="conv.tflite")
+interpreter = tf.lite.Interpreter(model_path="model/conv.tflite")
 # print(interpreter.get_input_details())
 
 # for tensor_detail in interpreter.get_tensor_details():
@@ -17,7 +17,13 @@ interpreter.allocate_tensors()
 
 # 인식하고자 하는 웨이브파일을 읽어온다.
 # !ffmpeg -i data/buliya/test.wav -ar 16000 test.wav
-samplerate, data = wavfile.read("data/test.wav")
+samplerate, data = wavfile.read("model/data/08-오디오 트랙.wav")
+
+
+# 만약 음성데이터의 사이즈가 16000보다 작다면, 뒷부분을 0으로 채운다.
+print(len(data))
+if len(data) <= 16000:
+  data = np.pad(data, (0, 16000-data.size), mode='constant')
 
 # 첫 번쨰 input을 입력한다. 그래프를 분석하면 (16000, 1)shape의 [0,1)의 np.float32임을 확인할 수 있다. 그것에 맞춰서 데이터를 수정하자
 input_data = np.array(data[:16000]/32767.0, dtype=np.float32).reshape((16000, 1))
@@ -32,7 +38,7 @@ interpreter.invoke()
 # 실행결과를 읽어온다.
 output = interpreter.get_tensor(interpreter.get_output_details()[0]['index'])
 
-plt.bar(['silence', 'unknown', 'buliya'], output[0])
+plt.bar(['silence', 'unknown', 'buliya', 'suzy'], output[0])
 plt.title(f'Predictions for buliya')
 plt.show()
 for i in output[0]:

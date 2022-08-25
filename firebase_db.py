@@ -32,6 +32,7 @@ class FirebaseDB:
             ref = db.reference()
         return ref.get()
 
+    # delete
     def delete(self, v):
         ref = db.reference(v)
         ref.delete()

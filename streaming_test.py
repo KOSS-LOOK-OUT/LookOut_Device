@@ -1,6 +1,7 @@
 import pyaudio
 import numpy as np
 
+import matplotlib.pyplot as plt
 import tensorflow as tf
 import librosa
 from tflite_support import metadata
@@ -39,9 +40,9 @@ stream = p.open(
 
 
 # Get a WAV file for inference and list of labels from the model
-tflite_file = 'model/browserfft-speech.tflite'
+tflite_file = 'model/lookout.tflite'
 labels = get_labels(tflite_file)
-random_audio = 'model/data/55.wav'
+random_audio = 'model/data/도둑이야.wav'
 
 # Ensure the audio sample fits the model input
 interpreter = tf.lite.Interpreter(tflite_file)
@@ -79,6 +80,12 @@ while True:
     if len(buffer) >= input_size:
         # if len(buffer) < input_size:
         #     buffer.resize(input_size)
+        plt.title('buffer prediction')
+        plt.cla()
+        plt.plot(buffer)
+        plt.pause(0.01)
+        plt.ion()
+
         buffer = np.expand_dims(buffer[:input_size], axis=0)
         print(buffer.shape)
         interpreter.allocate_tensors()

@@ -45,13 +45,17 @@ input_size = input_details[0]['shape'][1]
 sample_rate = get_input_sample_rate(tflite_file)
 audio_data, _ = librosa.load(random_audio, sr=sample_rate)
 
-# print(len(audio_data))
-# plt.title(random_audio)
-# plt.plot(audio_data)
-# plt.show()
+
+
 if len(audio_data) < input_size:
   audio_data.resize(input_size)
 audio_data = np.expand_dims(audio_data[:input_size], axis=0)
+
+print(len(audio_data))
+print(audio_data.shape)
+plt.title(random_audio)
+plt.plot(audio_data[0])
+plt.show()
 
 # Run inference
 interpreter.allocate_tensors()

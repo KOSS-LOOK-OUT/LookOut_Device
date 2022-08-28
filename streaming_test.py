@@ -35,7 +35,8 @@ stream = p.open(
     channels=1,
     rate=SAMPLE_RATE,
     input=True,
-    frames_per_buffer=CHUNK_SIZE
+    frames_per_buffer=CHUNK_SIZE,
+    input_device_index=1
 )
 
 
@@ -56,6 +57,7 @@ if len(audio_data) < input_size:
   audio_data.resize(input_size)
 audio_data = np.expand_dims(audio_data[:input_size], axis=0)
 
+# (1, 44032)
 print(audio_data.shape)
 
 # Run inference
@@ -88,7 +90,7 @@ while True:
 
         buffer = np.expand_dims(buffer[:input_size], axis=0)
         print(buffer.shape)
-        interpreter.allocate_tensors()
+        # interpreter.allocate_tensors()
         interpreter.set_tensor(input_details[0]['index'], buffer)
         interpreter.invoke()
         output_data = interpreter.get_tensor(output_details[0]['index'])

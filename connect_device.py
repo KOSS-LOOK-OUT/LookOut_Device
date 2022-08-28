@@ -51,7 +51,6 @@ while current != goal:  # 3분 전
     # if input_no == certification_no:  # 테스트용 코드
     if fb.get(response)[certification_no]['state'] == True:  # 인증번호 인증 성공 후
         fb.delete(str(certification_no))  # 인증번호 컬렉션 삭제
-        time.sleep(0.1)  # 0.1초 딜레이
         fb.update({device_id: {  # id 컬렉션 생성
             "info": {
                 "id": device_id

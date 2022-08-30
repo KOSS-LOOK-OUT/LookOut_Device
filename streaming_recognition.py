@@ -27,30 +27,16 @@ WORD_THRESHOLD = 0.7  # prediction 값을 참이라고 판별하는 score thresh
 class Model():
     """Init a model and set interpreter"""
     def __init__(self, model_path):
-        self.labels = self._get_labels(model_path)
+        self.labels = ['background', '불이야', '조심해', '도둑이야']
         self.interpreter = tf.lite.Interpreter(model_path)
         self.input_details = self.interpreter.get_input_details()
         self.output_details = self.interpreter.get_output_details()
 
         self.input_size = self.input_details[0]['shape'][1]
-        self.sample_rate = self._get_input_sample_rate(model_path)
+        self.sample_rate = 44100
 
         self.interpreter.allocate_tensors()
 
-    def _get_labels(self, model):
-        """Returns a list of labels, extracted from the model metadata."""
-        displayer = metadata.MetadataDisplayer.with_model_file(model)
-        labels_file = displayer.get_packed_associated_file_list()[0]
-        labels = displayer.get_associated_file_buffer(labels_file).decode()
-        return [line for line in labels.split('\n')]
-
-    def _get_input_sample_rate(self, model):
-        """Returns the model's expected sample rate, from the model metadata."""
-        displayer = metadata.MetadataDisplayer.with_model_file(model)
-        metadata_json = json.loads(displayer.get_metadata_json())
-        input_tensor_metadata = metadata_json['subgraph_metadata'][0]['input_tensor_metadata'][0]
-        input_content_props = input_tensor_metadata['content']['content_properties']
-        return input_content_props['sample_rate']
 
     def set_input(self, audio):
         self.interpreter.set_tensor(self.input_details[0]['index'], audio)

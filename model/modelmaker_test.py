@@ -21,14 +21,14 @@ from IPython.display import Audio
 #   labels = displayer.get_associated_file_buffer(labels_file).decode()
 #   return [line for line in labels.split('\n')]
 
-def get_input_sample_rate(model):
-  """Returns the model's expected sample rate, from the model metadata."""
-  displayer = metadata.MetadataDisplayer.with_model_file(model)
-  metadata_json = json.loads(displayer.get_metadata_json())
-  input_tensor_metadata = metadata_json['subgraph_metadata'][0][
-          'input_tensor_metadata'][0]
-  input_content_props = input_tensor_metadata['content']['content_properties']
-  return input_content_props['sample_rate']
+# def get_input_sample_rate(model):
+#   """Returns the model's expected sample rate, from the model metadata."""
+#   displayer = metadata.MetadataDisplayer.with_model_file(model)
+#   metadata_json = json.loads(displayer.get_metadata_json())
+#   input_tensor_metadata = metadata_json['subgraph_metadata'][0][
+#           'input_tensor_metadata'][0]
+#   input_content_props = input_tensor_metadata['content']['content_properties']
+#   return input_content_props['sample_rate']
 
 
 
@@ -42,9 +42,10 @@ interpreter = tf.lite.Interpreter(tflite_file)
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 input_size = input_details[0]['shape'][1]
-sample_rate = get_input_sample_rate(tflite_file)
+sample_rate = 44100
 audio_data, _ = librosa.load(random_audio, sr=sample_rate)
 
+print(sample_rate)
 
 
 if len(audio_data) < input_size:

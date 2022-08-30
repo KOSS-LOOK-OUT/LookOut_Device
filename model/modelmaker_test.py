@@ -14,12 +14,12 @@ import json
 from IPython.display import Audio
 
 
-def get_labels(model):
-  """Returns a list of labels, extracted from the model metadata."""
-  displayer = metadata.MetadataDisplayer.with_model_file(model)
-  labels_file = displayer.get_packed_associated_file_list()[0]
-  labels = displayer.get_associated_file_buffer(labels_file).decode()
-  return [line for line in labels.split('\n')]
+# def get_labels(model):
+#   """Returns a list of labels, extracted from the model metadata."""
+#   displayer = metadata.MetadataDisplayer.with_model_file(model)
+#   labels_file = displayer.get_packed_associated_file_list()[0]
+#   labels = displayer.get_associated_file_buffer(labels_file).decode()
+#   return [line for line in labels.split('\n')]
 
 def get_input_sample_rate(model):
   """Returns the model's expected sample rate, from the model metadata."""
@@ -34,7 +34,7 @@ def get_input_sample_rate(model):
 
 # Get a WAV file for inference and list of labels from the model
 tflite_file = 'lookout.tflite'
-labels = get_labels(tflite_file)
+labels = ['background', '불이야', '조심해', '도둑이야']
 random_audio = 'data/불이야.wav'
 
 # Ensure the audio sample fits the model input

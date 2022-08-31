@@ -1,18 +1,57 @@
+<style>
+  a {
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+    color: #202124;
+    padding: 12px 17px;
+    transition: box-shadow 0.2s;
+    -webkit-box-align: center;
+    align-items: center;
+}
+  td > a > img{
+    height: auto;
+    margin-right: 8px;
+  }
+  td{
+    display:flex
+  }
+</style>
+
 <p align="center">
   <img src="imgs/logo2.png" width="30%"/>
   <br>
 </p>
 
-LookOut
-==================================
+# LookOut
 
+### 소개
 화재나 교통사고 등 위험 상황 발생 시 상황을 소리로 인지하지 못하여 피해를 보는 청각장애인들이 많습니다. 청각장애인들이 아니어도 노이즈 캔슬링 이어폰이나 시끄러운 실내에서 위험 상황을 뒤늦게 알아차리고 제대로 대처가 안되는 경우가 발생하기도 합니다. 이러한 상황에 대한 해결책으로는 주변의 소리를 인식 및 분류하여 위험 상황일 경우 사용자에게 스마트폰 알림을 주는 애플리케이션이 있습니다. 하지만 "조심해", "불이야"와 같은 말소리를 인식하여 사용자에게 정보를 제공하기 어렵다는 문제점이 있습니다. 
 
 LookOut은 청각장애인을 위한 인공지능 음성 기반 위험 안내 어플입니다. LookOut은 라즈베리 파이를 활용하여 가정이나 실내 장소에 설치 가능한 기기를 만듭니다. 특정 음성 키워드가 인식되었을 경우 어플리케이션 서버에 감지된 키워드 정보를 전달합니다. 
 사용자는 위험상황이 발생하였거나 등록되어있는 특정 음성이 인식이 되었을 경우 스마트폰과 워치를 통해 알림을 받을 수 있습니다.
 
-Quick Start
------------
+인식할 수 있는 키워드로는 2022년 9월 기준 "불이야", "도둑이야", "조심해"가 있습니다.
+
+### Tensor Flow lite model maker 모델 훈련
+<tr>
+  <td>
+    <a target="_blank" href="https://colab.research.google.com/github/tensorflow/tensorflow/blob/master/tensorflow/lite/g3doc/models/modify/model_maker/text_classification.ipynb?hl=ko"><img src="https://www.tensorflow.org/images/colab_logo_32px.png?hl=ko">Run in Google Colab</a>
+  </td>
+  <td>
+    <a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/lite/g3doc/models/modify/model_maker/text_classification.ipynb"><img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png?hl=ko">View source on GitHub</a>
+  </td>
+  <td>
+    <a href="https://storage.googleapis.com/tensorflow_docs/tensorflow/tensorflow/lite/g3doc/models/modify/model_maker/text_classification.ipynb"><img src="https://www.tensorflow.org/images/download_logo_32px.png?hl=ko">Download notebook</a>
+  </td>
+</tr>
+
+
+
+
+## System Architecture
+<img src="imgs/system_architecture.png"/>
+
+## Quick Start
 ### Installation
 
 use virtual environment
@@ -37,7 +76,7 @@ cd LookOut_Device
 pip install -r requirements.txt
 ```
 
-You need to make .env file in root directory
+You need to make .env file in your root directory
 ```python
 # .env
 
@@ -46,3 +85,12 @@ GOOGLE_APPLICATION_CREDENTIALS=google_service_account_file_path
 
 ```
 
+
+### 팀 정보
+
+| Name   | Email                 | Role | Part | Tech Stack |
+| ------ | --------------------- | ---- | ---------- | ---------- |
+| <a href="https://github.com/mrgentle1">김준영</a> | mrgentle15@gmail.com   | 팀장 | PM, device and tensorflow       | Python, tensorflow, firebase  |
+| <a href="https://github.com/Eonji-sw">김언지</a> | ejkim0625@gmail.com   | 팀원 | mobile app, device       | Python, Java  |
+| <a href="https://github.com/Kim-Jiyun">김지윤</a> | kwldbs1118@gmail.com  | 팀원 | mobile app core      | Java, firebase  |
+| <a href="https://github.com/hummingbbird">이채영</a> | pop98149814@gmail.com | 팀원 | mobile app UI       | xml, Java  |

@@ -1,6 +1,6 @@
 """
 test.py
-to test firebase db with dummy data
+파이어베이스에 일정 주기마다 더미데이터를 전송하는 테스트파일입니다.
 """
 
 from firebase_db import FirebaseDB

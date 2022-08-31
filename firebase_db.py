@@ -7,6 +7,9 @@ from dotenv import load_dotenv
 
 
 class FirebaseDB:
+    """
+    Firebase CRUD helper class, NEED 'certification.json' in same directory
+    """
     def __init__(self):
         """Authentication"""
         load_dotenv(verbose=True)

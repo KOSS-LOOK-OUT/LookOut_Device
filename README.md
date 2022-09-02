@@ -1,27 +1,10 @@
-<style>
-  a {
-    border-radius: 8px;
-    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
-    color: #202124;
-    padding: 12px 17px;
-    transition: box-shadow 0.2s;
-    -webkit-box-align: center;
-    align-items: center;
-}
-  td > a > img{
-    height: auto;
-    margin-right: 8px;
-  }
-  td{
-    display:flex
-  }
-</style>
-
 <p align="center">
   <img src="imgs/logo2.png" width="30%"/>
   <br>
 </p>
 
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/KOSS-LOOK-OUT)
+[![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white)](https://youtube.com)
 # LookOut
 
 ### 소개
@@ -34,16 +17,27 @@ LookOut은 청각장애인을 위한 인공지능 음성 기반 위험 안내 �
 
 ### Tensor Flow lite model maker 모델 훈련
 <tr>
-  <td>
-    <a target="_blank" href="https://colab.research.google.com/github/tensorflow/tensorflow/blob/master/tensorflow/lite/g3doc/models/modify/model_maker/text_classification.ipynb?hl=ko"><img src="https://www.tensorflow.org/images/colab_logo_32px.png?hl=ko">Run in Google Colab</a>
+<td>
+    <a target="_blank" href="https://colab.research.google.com/github/tensorflow/tensorflow/blob/master/tensorflow/lite/g3doc/models/modify/model_maker/speech_recognition.ipynb"><img src="https://www.tensorflow.org/images/colab_logo_32px.png">Run in Google Colab</a>
   </td>
   <td>
-    <a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/lite/g3doc/models/modify/model_maker/text_classification.ipynb"><img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png?hl=ko">View source on GitHub</a>
+    <a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/lite/g3doc/models/modify/model_maker/speech_recognition.ipynb"><img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png">View source on GitHub</a>
   </td>
   <td>
-    <a href="https://storage.googleapis.com/tensorflow_docs/tensorflow/tensorflow/lite/g3doc/models/modify/model_maker/text_classification.ipynb"><img src="https://www.tensorflow.org/images/download_logo_32px.png?hl=ko">Download notebook</a>
+    <a href="https://storage.googleapis.com/tensorflow_docs/tensorflow/tensorflow/lite/g3doc/models/modify/model_maker/speech_recognition.ipynb"><img src="https://www.tensorflow.org/images/download_logo_32px.png">Download notebook</a>
   </td>
-</tr>
+
+</tr><br>
+
+- **데이터 라벨링**
+
+  저희가 참고한 Text classification with TensorFlow Lite Model Maker 예제에서 사용한 훈련데이터를 바탕으로 데이터의 포맷과 개수를 정했습니다. Tensorflow Lite Model Maker에서는 전이 학습 프로세스로 사전 훈련된 모델의 기능을 임베딩하여 사용하기 때문에 각 클래스에 수십 개의 샘플만 있으면 accuracy를 보장받는 모델을 얻을 수 있습니다.
+
+  따라서 저희는 각 키워드별로 다양한 화자, 빠르기와 톤의 1초 미만 16bit wav 파일을 녹음하여 약 200개씩 준비하였습니다. 
+
+- **트레이닝 방식** 
+
+- **Issues**
 
 
 

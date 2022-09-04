@@ -14,9 +14,7 @@ class FirebaseDB:
         """Authentication"""
         load_dotenv(verbose=True)
         DATABASE_URL = os.getenv('DATABASE_URL')
-        #cred = credentials.Certificate('certification.json')
-        cred = credentials.Certificate(
-            'test.json')
+        cred = credentials.Certificate('certification.json')
         firebase_admin.initialize_app(cred, {
             # 'databaseURL' : DATABASE_URL
             'databaseURL': 'https://test-51406-default-rtdb.firebaseio.com/'

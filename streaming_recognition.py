@@ -12,12 +12,21 @@ import tensorflow as tf
 from tflite_support import metadata
 import json
 import time
+import os, sys, pickle
 from datetime import datetime
 
 from firebase_db import FirebaseDB
 
-# test variable
-DEVICE_ID = 1
+file = 'device_id.pickle'
+
+# Load DEVICE_ID
+if os.path.isfile(file):
+    # 파일에서 디바이스 uuid 로드
+    with open(file, 'rb') as f:
+        DEVICE_ID = str(pickle.load(f))
+else:
+    sys.exit("error: Execute ./connect_device.py and regist your device first")
+
 DEVICE_STATUS = True
 
 RATE = 44100
@@ -138,7 +147,7 @@ def prediction(audio_gen):
         if prev != 'background' and prev == label:  # 잘못 인식되는 case를 줄이기 위해 prediction 값이 연속으로 같을 경우에만 firebase에 업로드
             nowdate = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             fb.update({
-                "device_"+str(DEVICE_ID):{
+                str(DEVICE_ID):{
                 "device_status":DEVICE_STATUS,
                 "content":{
                     "message":['불이야', '조심해', '도둑이야'][top_index-1],

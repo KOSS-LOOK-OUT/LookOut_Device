@@ -7,7 +7,7 @@ import pickle
 import os.path
 import firebase_db
 
-# Firebase 불러오기
+
 fb = firebase_db.FirebaseDB()
 # 디바이스 uuid를 저장할 파일
 file = 'device_id.pickle'

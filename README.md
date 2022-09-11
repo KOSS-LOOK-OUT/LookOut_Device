@@ -35,10 +35,6 @@ LookOut은 청각장애인을 위한 인공지능 음성 기반 위험 안내 �
 
   따라서 저희는 각 키워드별로 다양한 화자, 빠르기와 톤의 1초 미만 16bit wav 파일을 녹음하여 약 200개씩 준비하였습니다. 
 
-- **트레이닝 방식** 
-
-- **Issues**
-
 
 
 
@@ -65,12 +61,12 @@ $ source myenv/Scripts/activate
 
 install dependencies
 ```shell
-git clone https://github.com/KOSS-LOOK-OUT/LookOut_Device.git
-cd LookOut_Device
-pip install -r requirements.txt
+$ git clone https://github.com/KOSS-LOOK-OUT/LookOut_Device.git
+$ cd LookOut_Device
+$ pip install -r requirements.txt
 ```
 
-You need to make .env file in your root directory
+You need to create .env file in your root directory
 ```python
 # .env
 
@@ -78,6 +74,20 @@ DATABASE_URL=firebase_realtime_db_url
 GOOGLE_APPLICATION_CREDENTIALS=google_service_account_file_path
 
 ```
+
+Connect device with application
+```shell
+$ python connect_device.py
+id:  ceed1555-5cc9-476d-a167-c908dfb5c954  // your device uuid
+no:  516898  // Authentication number
+```
+
+Finally, start!
+```shell
+$ python streaming_recognition.py
+```
+
+---
 
 
 ### 팀 정보

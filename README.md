@@ -41,6 +41,15 @@ LookOut은 청각장애인을 위한 인공지능 음성 기반 위험 안내 �
 ## System Architecture
 <img src="imgs/system_architecture.png"/>
 
+## 개발환경 및 개발언어
+-	운영체제 : Windows, Ubuntu 20.04, Raspbian 5.15 (64bit)
+-	디바이스 구성 : Raspberry Pi 4B, ReSpeaker 2-Mics Pi HAT
+-	IDE : Visual Studio Code, Android Studio
+-	개발 언어 : Python3.9, Java
+-	데이터베이스 : Firebase realtime database
+-	협업 툴 : Github, Notion, Discord
+
+
 ## Quick Start
 ### Installation
 

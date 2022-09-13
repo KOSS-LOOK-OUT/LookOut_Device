@@ -7,8 +7,8 @@
 [![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white)](https://youtu.be/c8MuQbuM--4)
 # LookOut
 
-## 데모
-<img src="imgs/demo.gif" width="50%"/>
+<img src="imgs/demo.gif" width="70%"/>
+
 ---
 
 ### 소개

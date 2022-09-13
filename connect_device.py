@@ -1,4 +1,3 @@
-from genericpath import isfile
 import uuid
 import random
 import time
@@ -9,24 +8,23 @@ import firebase_db
 
 
 fb = firebase_db.FirebaseDB()
-# 디바이스 uuid를 저장할 파일
-file = 'device_id.pickle'
+filename = 'device_id.pickle'
 
-if os.path.isfile(file):
-    # 파일에서 디바이스 uuid 로드
-    with open(file, 'rb') as f:
+# uuid를 생성한적이 있다면, load해오고 없다면 새로 생성함
+if os.path.isfile(filename):
+    with open(filename, 'rb') as f:
         device_id = str(pickle.load(f))
+
 else:
-    # 파일에 디바이스 uuid 생성
-    with open(file, 'wb') as f:
+    with open(filename, 'wb') as f:
         pickle.dump(uuid.uuid4(), f)
     # 파일에서 디바이스 uuid 로드
-    with open(file, 'rb') as f:
+    with open(filename, 'rb') as f:
         device_id = str(pickle.load(f))
+
 
 # 인증번호
 certification_no = ""
-# 인증번호 인증 성공 여부
 response = False
 
 # 인증번호 랜덤 생성
@@ -79,3 +77,4 @@ else:
     # 인증시간이 3분 이후
     # 인증번호 컬렉션 삭제
     fb.delete(str(certification_no))
+

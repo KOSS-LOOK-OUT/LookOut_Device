@@ -3,7 +3,6 @@ Test microphone
 """
 import pyaudio
 import numpy as np
-import time
 import matplotlib.pyplot as plt
 import pyaudio
 from six.moves import queue

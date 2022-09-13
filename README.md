@@ -4,8 +4,12 @@
 </p>
 
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/KOSS-LOOK-OUT)
-[![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white)](https://youtube.com)
+[![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white)](https://youtu.be/c8MuQbuM--4)
 # LookOut
+
+<img src="imgs/demo.gif" width="70%"/>
+
+---
 
 ### 소개
 화재나 교통사고 등 위험 상황 발생 시 상황을 소리로 인지하지 못하여 피해를 보는 청각장애인들이 많습니다. 청각장애인들이 아니어도 노이즈 캔슬링 이어폰이나 시끄러운 실내에서 위험 상황을 뒤늦게 알아차리고 제대로 대처가 안되는 경우가 발생하기도 합니다. 이러한 상황에 대한 해결책으로는 주변의 소리를 인식 및 분류하여 위험 상황일 경우 사용자에게 스마트폰 알림을 주는 애플리케이션이 있습니다. 하지만 "조심해", "불이야"와 같은 말소리를 인식하여 사용자에게 정보를 제공하기 어렵다는 문제점이 있습니다. 
@@ -95,6 +99,41 @@ Finally, start!
 ```shell
 $ python streaming_recognition.py
 ```
+
+---
+## Commit Message Convention
+
+### Commit message 구조
+Commit message 는 제목, 본문, 꼬리말로 구성합니다.
+제목은 필수사항이며, 본문과 꼬리말은 선택사항입니다.
+```
+<type>: <subject>
+
+<body>
+
+<footer>
+```
+
+### Type
+> - feat : 새로운 기능 추가, 기존의 기능을 요구 사항에 맞추어 수정
+>
+> - fix : 기능에 대한 버그 수정
+>
+> - build : 빌드 관련 수정
+>
+> - chore : 패키지 매니저 수정, 그 외 기타 수정 ex) .gitignore
+>
+> - ci : CI 관련 설정 수정
+>
+> - docs : 문서(주석) 수정
+>
+> - style : 코드 스타일, 포맷팅에 대한 수정
+>
+> - refactor : 기능의 변화가 아닌 코드 리팩터링 ex) 변수 이름 변경
+>
+> - test : 테스트 코드 추가/수정
+>
+> - release : 버전 릴리즈
 
 ---
 

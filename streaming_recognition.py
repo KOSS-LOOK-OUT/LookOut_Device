@@ -7,22 +7,18 @@ use pyaudio to record your voice and generate streaming data to 44100Hz input da
 import pyaudio
 import numpy as np
 from six.moves import queue
-import matplotlib.pyplot as plt
 import tensorflow as tf
-from tflite_support import metadata
-import json
-import time
 import os, sys, pickle
 from datetime import datetime
 
 from firebase_db import FirebaseDB
 
-file = 'device_id.pickle'
+filename = 'device_id.pickle'
 
 # Load DEVICE_ID
-if os.path.isfile(file):
+if os.path.isfile(filename):
     # 파일에서 디바이스 uuid 로드
-    with open(file, 'rb') as f:
+    with open(filename, 'rb') as f:
         DEVICE_ID = str(pickle.load(f))
 else:
     sys.exit("error: Execute ./connect_device.py and regist your device first")
@@ -156,8 +152,6 @@ def prediction(audio_gen):
             
         prev = label
 
-
-        
 
 
 def main():

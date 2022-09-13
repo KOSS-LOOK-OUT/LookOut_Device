@@ -48,10 +48,6 @@ class FirebaseDB:
 
 def main():
     f = FirebaseDB()
-    # f.delete('726034')
-
-    # f.update({'hello': 'world'})
-    # print(f.get())
 
 
 if __name__ == "__main__":
